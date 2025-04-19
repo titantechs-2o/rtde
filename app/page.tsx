@@ -37,26 +37,25 @@ const Editor: FC = () => {
   return (
     <Authenticator>
       {({ signOut }) => (
-        <div className="container mt-5">
-          <div className="card shadow p-4">
-            <h2 className="text-center">Real-time Collaborative Editor</h2>
-
+        <div className="container">
+          <div className="card">
+            <h2 className="editor-title">Real-time Collaborative Editor</h2>
             {/* Formatting Controls */}
-            <div className="d-flex justify-content-center gap-2 mt-3 mb-3">
+            <div className="formatting-controls">
               <button
-                className={`btn ${bold ? "btn-dark" : "btn-outline-dark"}`}
+                className={`format-button ${bold ? "active" : ""}`}
                 onClick={() => toggleStyle(bold, setBold, "bold")}
               >
                 <b>B</b>
               </button>
               <button
-                className={`btn ${italic ? "btn-dark" : "btn-outline-dark"}`}
+                className={`format-button ${italic ? "active" : ""}`}
                 onClick={() => toggleStyle(italic, setItalic, "italic")}
               >
                 <i>I</i>
               </button>
               <button
-                className={`btn ${underline ? "btn-dark" : "btn-outline-dark"}`}
+                className={`format-button ${underline ? "active" : ""}`}
                 onClick={() =>
                   toggleStyle(underline, setUnderline, "underline")
                 }
@@ -66,18 +65,32 @@ const Editor: FC = () => {
             </div>
 
             {/* Editor Text Area */}
-            <textarea
-              className="form-control"
-              value={content}
-              onChange={handleEdit}
-              rows={10}
-              placeholder="Start typing..."
-              style={{
-                fontWeight: bold ? "bold" : "normal",
-                fontStyle: italic ? "italic" : "normal",
-                textDecoration: underline ? "underline" : "none",
-              }}
-            ></textarea>
+            <div className="text-control">
+              <textarea
+                className="text-area"
+                value={content}
+                onChange={handleEdit}
+                placeholder="Start typing..."
+                style={{
+                  fontWeight: bold ? "bold" : "normal",
+                  fontStyle: italic ? "italic" : "normal",
+                  textDecoration: underline ? "underline" : "none",
+                }}
+              />
+            </div>
+
+            {/* Sign Out */}
+            <div className="action-buttons">
+              <button
+                className="download-button"
+                onClick={() => alert("Download logic coming soon!")}
+              >
+                Download
+              </button>
+              <button className="signout-button" onClick={signOut}>
+                Sign Out
+              </button>
+            </div>
           </div>
         </div>
       )}
