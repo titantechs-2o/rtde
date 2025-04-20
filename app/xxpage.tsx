@@ -14,14 +14,14 @@ Amplify.configure(outputs);
 const client = generateClient<Schema>();
 
 export default function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [todos, setTodos] = useState<Array<Schema["Document"]["type"]>>([]);
 
   function deleteToDo(id: string) {
-    client.models.Todo.delete({ id });
+    client.models.Document.delete({ id });
   }
 
   function listTodos() {
-    client.models.Todo.observeQuery().subscribe({
+    client.models.Document.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
   }
@@ -31,7 +31,7 @@ export default function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({
+    client.models.Document.create({
       content: window.prompt("Todo content"),
     });
   }
