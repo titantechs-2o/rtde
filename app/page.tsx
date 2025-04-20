@@ -18,9 +18,20 @@ const Editor: FC = () => {
   const [italic, setItalic] = useState<boolean>(false);
   const [underline, setUnderline] = useState<boolean>(false);
 
-  const handleEdit = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    const updatedContent: string = event.target.value;
+  const handleEdit = async (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const updatedContent = event.target.value;
     setContent(updatedContent);
+
+    // Save update to DynamoDB
+    const { data } = await client.models.Document.list();
+    const doc = data.find((d) => d.title === "shared-doc");
+
+    if (doc) {
+      await client.models.Document.update({
+        id: doc.id,
+        content: updatedContent,
+      });
+    }
   };
 
   const toggleStyle = (
@@ -33,6 +44,24 @@ const Editor: FC = () => {
       return newState;
     });
   };
+
+  useEffect(() => {
+    const fetchDocument = async () => {
+      const { data } = await client.models.Document.list();
+      const doc = data.find((d) => d.title === "shared-doc");
+      if (doc) {
+        setContent(doc.content ?? "");
+      } else {
+        // Optional: create one if it doesn't exist
+        await client.models.Document.create({
+          title: "shared-doc",
+          content: "",
+        });
+      }
+    };
+
+    fetchDocument();
+  }, []);
 
   return (
     <Authenticator>
