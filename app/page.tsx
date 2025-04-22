@@ -24,9 +24,11 @@ const Editor: FC = () => {
 
     // Save update to DynamoDB
     const { data } = await client.models.Document.list();
+    console.log(data);
     const doc = data.find((d) => d.title === "shared-doc");
 
     if (doc) {
+      console.log(doc.id, updatedContent);
       await client.models.Document.update({
         id: doc.id,
         content: updatedContent,
