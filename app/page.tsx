@@ -36,6 +36,34 @@ const Editor: FC = () => {
     }
   };
 
+  const handleDownload = async () => {
+    try {
+      const { data } = await client.models.Document.list();
+      const doc = data.find((d) => d.title === "shared-doc");
+
+      if (!doc) {
+        alert("No document found.");
+        return;
+      }
+
+      const blob = new Blob([doc.content ?? ""], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${doc.title}.txt`; // file name
+      document.body.appendChild(link);
+      link.click();
+
+      // Cleanup
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("Failed to download document.");
+    }
+  };
+
   const toggleStyle = (
     style: boolean,
     setter: React.Dispatch<React.SetStateAction<boolean>>,
@@ -112,10 +140,7 @@ const Editor: FC = () => {
 
             {/* Sign Out */}
             <div className="action-buttons">
-              <button
-                className="download-button"
-                onClick={() => alert("Download logic coming soon!")}
-              >
+              <button className="download-button" onClick={handleDownload}>
                 Download
               </button>
               <button className="signout-button" onClick={signOut}>
