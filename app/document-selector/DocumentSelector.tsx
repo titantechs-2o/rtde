@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import DocumentTile from "./DocumentTile";
-import styles from "./page.module.css";
 
 interface Document {
   id: string;
@@ -54,34 +53,36 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Select a Document</h1>
+    <div className="container">
+      <div className="card">
+        <h1 className="editor-title">Select a Document</h1>
 
-      <div className={styles.actions}>
-        <button onClick={fetchDocuments} className={styles.button}>
-          Refresh
-        </button>
-        <button onClick={createDocument} className={styles.button}>
-          Create New Document
-        </button>
-        <button onClick={() => signOut?.()} className={styles.button}>
-          Sign Out
-        </button>
-      </div>
+        <div className="action-buttons">
+          <button onClick={fetchDocuments} className="refresh-button">
+            Refresh
+          </button>
+          <button onClick={createDocument} className="crete-new-button">
+            Create New Document
+          </button>
+          <button onClick={() => signOut?.()} className="signout-button">
+            Sign Out
+          </button>
+        </div>
 
-      <div className={styles.documentGrid}>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          documents.map((doc) => (
-            <DocumentTile
-              key={doc.id}
-              id={doc.id}
-              title={doc.title}
-              createdAt={doc.createdAt}
-            />
-          ))
-        )}
+        <div className="text-control">
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            documents.map((doc) => (
+              <DocumentTile
+                key={doc.id}
+                id={doc.id}
+                title={doc.title}
+                createdAt={doc.createdAt}
+              />
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

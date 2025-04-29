@@ -139,6 +139,8 @@ a:hover {
   margin-top: 1rem;
 }
 
+.refresh-button,
+.crete-new-button,
 .download-button,
 .signout-button {
   padding: 10px 20px;
@@ -151,6 +153,8 @@ a:hover {
   transition: all 0.2s ease;
 }
 
+.refresh-button:hover,
+.crete-new-button:hover,
 .download-button:hover,
 .signout-button:hover {
   background-color: #00ADB5;
