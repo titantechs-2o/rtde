@@ -83,9 +83,7 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
               />
             ))
           )}
-          <Editor>
-                
-          </Editor>
+          <Editor />
         </div>
       </div>
     </div>
