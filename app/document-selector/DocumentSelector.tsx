@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import DocumentTile from "./DocumentTile";
 import Editor from "../editor/page";
+import { generateClient } from "aws-amplify/data";
+import type {Scheme} from "@aws-amplify/data/resource";
 
 interface Document {
   id: string;
@@ -14,6 +16,8 @@ interface Document {
 interface DocumentSelectorProps {
   signOut?: () => void;
 }
+
+const client = generateClient<Scheme>();
 
 export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -33,20 +37,21 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
   };
 
   const createDocument = async () => {
-    const title = prompt("Enter a title for the new document:");
-    if (!title) return;
+    // const title = prompt("Enter a title for the new document:");
+    // if (!title) return;
 
-    try {
-      const response = await fetch("/api/createDocument", {
-        method: "POST",
-        body: JSON.stringify({ title }),
-      });
+    // try {
+    //   const response = await fetch("/api/createDocument", {
+    //     method: "POST",
+    //     body: JSON.stringify({ title }),
+    //   });
 
-      const newDoc = await response.json();
-      window.location.href = `/editor?docId=${newDoc.id}`;
-    } catch (error) {
-      console.error("Failed to create document:", error);
-    }
+    //   const newDoc = await response.json();
+    //   window.location.href = `/editor?docId=${newDoc.id}`;
+    // } catch (error) {
+    //   console.error("Failed to create document:", error);
+    // }
+    client.models.Document.create({content: window.prompt("Create New Document"),});
   };
 
   useEffect(() => {
