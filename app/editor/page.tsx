@@ -93,8 +93,6 @@ const Editor: FC = () => {
   }, []);
 
   return (
-    <Authenticator>
-      {({ signOut }) => (
         <div className="container">
           <div className="card">
             <h2 className="editor-title">Real-time Collaborative Editor</h2>
@@ -148,8 +146,6 @@ const Editor: FC = () => {
             </div>
           </div>
         </div>
-      )}
-    </Authenticator>
   );
 };
 

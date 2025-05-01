@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import DocumentTile from "./DocumentTile";
+import Editor from "../editor/page";
 
 interface Document {
   id: string;
@@ -82,6 +83,9 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
               />
             ))
           )}
+          <Editor>
+                
+          </Editor>
         </div>
       </div>
     </div>
