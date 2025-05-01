@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import DocumentTile from "./DocumentTile";
 import Editor from "../editor/page";
 import { generateClient } from "aws-amplify/data";
-import type {Scheme} from "@aws-amplify/data/resource";
+import type {Schema} from "../../amplify/data/resource";
 
 interface Document {
   id: string;
@@ -17,7 +17,7 @@ interface DocumentSelectorProps {
   signOut?: () => void;
 }
 
-const client = generateClient<Scheme>();
+const client = generateClient<Schema>();
 
 export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -51,7 +51,7 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
     // } catch (error) {
     //   console.error("Failed to create document:", error);
     // }
-    client.models.Document.create({content: window.prompt("Create New Document"),});
+    client.models.Document.create({title: window.prompt("Create New Document"),});
   };
 
   useEffect(() => {
