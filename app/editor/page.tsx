@@ -1,11 +1,20 @@
 "use client";
 
 import "@/lib/amplifyClient";
-import { useState, useEffect, useMemo, FC } from "react";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  FC,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
+import { API } from "aws-amplify";
 
 const Editor: FC = () => {
   const client = generateClient<Schema>();
@@ -15,17 +24,12 @@ const Editor: FC = () => {
   const [italic, setItalic] = useState<boolean>(false);
   const [underline, setUnderline] = useState<boolean>(false);
 
-  const handleEdit = async (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleEdit = async (event: ChangeEvent<HTMLTextAreaElement>) => {
     const updatedContent = event.target.value;
     setContent(updatedContent);
-
-    // Save update to DynamoDB
     const { data } = await client.models.Document.list();
-    console.log(data);
-    const doc = data.find((d) => d.title === "shared-doc");
-
+    const doc = data.find((d: any) => d.title === "shared-doc");
     if (doc) {
-      console.log(doc.id, updatedContent);
       await client.models.Document.update({
         id: doc.id,
         content: updatedContent,
@@ -62,39 +66,39 @@ const Editor: FC = () => {
 
   const toggleStyle = (
     style: boolean,
-    setter: React.Dispatch<React.SetStateAction<boolean>>,
+    setter: Dispatch<SetStateAction<boolean>>,
     eventName: string
   ): void => {
-    setter((prev) => {
+    setter((prev: boolean) => {
       const newState: boolean = !prev;
       return newState;
     });
   };
 
+  const callLambda = async () => {
+    const response = await API.get("apiName", "/documents");
+    console.log(response);
+  };
+
   useEffect(() => {
-    try {
-      const fetchDocument = async () => {
-        const { data } = await client.models.Document.list();
-        const doc = data.find((d) => d.title === "shared-doc");
-        if (doc) {
-          setContent(doc.content ?? "");
-        } else {
-          // Optional: create one if it doesn't exist
-          await client.models.Document.create({
-            title: "shared-doc",
-            content: "",
-          });
-        }
-      };
-      fetchDocument();
-    } catch (error) {
-      console.error("Could not load document", error);
-    }
+    const fetchDocument = async () => {
+      const { data } = await client.models.Document.list();
+      const doc = data.find((d: any) => d.title === "shared-doc");
+      if (doc) {
+        setContent(doc.content ?? "");
+      } else {
+        await client.models.Document.create({
+          title: "shared-doc",
+          content: "",
+        });
+      }
+    };
+    fetchDocument();
   }, []);
 
   return (
     <Authenticator>
-      {({ signOut }) => (
+      {(props: { signOut: () => void }) => (
         <div className="container">
           <div className="card">
             <h2 className="editor-title">Real-time Collaborative Editor</h2>
@@ -142,9 +146,10 @@ const Editor: FC = () => {
               <button className="download-button" onClick={handleDownload}>
                 Download
               </button>
-              <button className="signout-button" onClick={signOut}>
+              <button className="signout-button" onClick={props.signOut}>
                 Sign Out
               </button>
+              <button onClick={callLambda}>Call Lambda</button>
             </div>
           </div>
         </div>
