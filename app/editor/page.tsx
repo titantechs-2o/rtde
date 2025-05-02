@@ -83,10 +83,10 @@ const Editor: FC = () => {
           setContent(doc.content ?? "");
         } else {
           // Optional: create one if it doesn't exist
-          // await client.models.Document.create({
-          //   title: "shared-doc",
-          //   content: "",
-          // });
+          await client.models.Document.create({
+            title: "shared-doc",
+            content: "",
+          });
         }
       };
       fetchDocument();
