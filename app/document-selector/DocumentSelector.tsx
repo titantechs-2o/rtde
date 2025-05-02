@@ -22,18 +22,20 @@ const client = generateClient<Schema>();
 export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(false);
-
+  
   const fetchDocuments = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/fetchDocuments");
-      const data = await response.json();
-      setDocuments(data);
-    } catch (error) {
-      console.error("Failed to fetch documents:", error);
-    } finally {
-      setLoading(false);
-    }
+    // setLoading(true);
+    // try {
+    //   const response = await fetch("/api/fetchDocuments");
+    //   const data = await response.json();
+    //   setDocuments(data);
+    // } catch (error) {
+    //   console.error("Failed to fetch documents:", error);
+    // } finally {
+    //   setLoading(false);
+    // }
+    const {data} = await client.models.Document.list();
+    console.log(data);
   };
 
   const createDocument = async () => {
