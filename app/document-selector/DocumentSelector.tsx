@@ -5,7 +5,7 @@ import DocumentTile from "./DocumentTile";
 import Editor from "../editor/page";
 import { generateClient } from "aws-amplify/data";
 import type {Schema} from "../../amplify/data/resource";
-import { handler } from "../../amplify/functions/fetchDocuments/index.mjs";
+import { ModelField, Nullable } from "@aws-amplify/data-schema";
 
 interface Document {
   id: string;
@@ -25,17 +25,28 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
   const [loading, setLoading] = useState(false);
   
   const fetchDocuments = async () => {
-    setLoading(true);
-    try {
-      const response = await handler();
-      const data = await response.body;
-      //setDocuments(data);
-      console.log(data);
-    } catch (error) {
-      console.error("Failed to fetch documents:", error);
-    } finally {
-      setLoading(false);
+    // setLoading(true);
+    // try {
+    //   const response = await handler(event);
+    //   const data = await response.body;
+    //   //setDocuments(data);
+    //   console.log(data);
+    // } catch (error) {
+    //   console.error("Failed to fetch documents:", error);
+    // } finally {
+    //   setLoading(false);
+    // }
+    const {data} = await client.models.Document.list();
+    let docs:[]=[];
+    for (const d of data){
+      console.log(typeof(d.title));
+      let str:string = d.title;
+      console.log(typeof(str));
+      docs.push({title: str, id: d.id, createdAt: d.createdAt, updatedAt: d.updatedAt})
     }
+    console.log(data);
+    console.log(docs);
+    setDocuments(docs);
 
   };
 
@@ -80,7 +91,7 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
               />
             ))
           )}
-          <Editor />
+          
         </div>
       </div>
     </div>

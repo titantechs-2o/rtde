@@ -7,7 +7,10 @@ import type { Schema } from "@/amplify/data/resource";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
-const Editor: FC = () => {
+
+const Editor: FC = () => { 
+  const url_params = new URLSearchParams(window.location.search);
+  const docId = url_params.get('docId');
   const client = generateClient<Schema>();
 
   const [content, setContent] = useState<string>("");
@@ -22,7 +25,7 @@ const Editor: FC = () => {
     // Save update to DynamoDB
     const { data } = await client.models.Document.list();
     console.log(data);
-    const doc = data.find((d) => d.title === "shared-doc");
+    const doc = data.find((d) => d.id === docId);
 
     if (doc) {
       console.log(doc.id, updatedContent);
@@ -36,7 +39,7 @@ const Editor: FC = () => {
   const handleDownload = async () => {
     try {
       const { data } = await client.models.Document.list();
-      const doc = data.find((d) => d.title === "shared-doc");
+      const doc = data.find((d) => d.id === docId);
 
       if (!doc) {
         alert("No document found.");
@@ -75,7 +78,7 @@ const Editor: FC = () => {
     try {
       const fetchDocument = async () => {
         const { data } = await client.models.Document.list();
-        const doc = data.find((d) => d.title === "shared-doc");
+        const doc = data.find((d) => d.id === docId);
         if (doc) {
           setContent(doc.content ?? "");
         } else {
