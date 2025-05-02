@@ -5,6 +5,7 @@ import DocumentTile from "./DocumentTile";
 import Editor from "../editor/page";
 import { generateClient } from "aws-amplify/data";
 import type {Schema} from "../../amplify/data/resource";
+import { handler } from "../../amplify/functions/fetchDocuments/index.mjs";
 
 interface Document {
   id: string;
@@ -24,36 +25,25 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
   const [loading, setLoading] = useState(false);
   
   const fetchDocuments = async () => {
-    // setLoading(true);
-    // try {
-    //   const response = await fetch("/api/fetchDocuments");
-    //   const data = await response.json();
-    //   setDocuments(data);
-    // } catch (error) {
-    //   console.error("Failed to fetch documents:", error);
-    // } finally {
-    //   setLoading(false);
-    // }
-    const {data} = await client.models.Document.list();
-    console.log(data);
+    setLoading(true);
+    try {
+      const response = await handler();
+      const data = await response.body;
+      //setDocuments(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Failed to fetch documents:", error);
+    } finally {
+      setLoading(false);
+    }
+
   };
 
   const createDocument = async () => {
-    // const title = prompt("Enter a title for the new document:");
-    // if (!title) return;
-
-    // try {
-    //   const response = await fetch("/api/createDocument", {
-    //     method: "POST",
-    //     body: JSON.stringify({ title }),
-    //   });
-
-    //   const newDoc = await response.json();
-    //   window.location.href = `/editor?docId=${newDoc.id}`;
-    // } catch (error) {
-    //   console.error("Failed to create document:", error);
-    // }
-    client.models.Document.create({title: window.prompt("Create New Document"),});
+    const str = window.prompt("Create New Document");
+    if(str != null){
+      client.models.Document.create({title: str,});
+    }
   };
 
   useEffect(() => {
