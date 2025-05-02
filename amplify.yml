@@ -10,7 +10,7 @@ frontend:
   phases:
     build:
       commands:
-        - npm run build
+        - amplify next build
   artifacts:
     baseDirectory: .next
     files:
