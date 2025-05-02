@@ -81,13 +81,13 @@ const Editor: FC = () => {
         const doc = data.find((d) => d.id === docId);
         if (doc) {
           setContent(doc.content ?? "");
-        } //else {
-        //   // Optional: create one if it doesn't exist
-        //   await client.models.Document.create({
-        //     title: "shared-doc",
-        //     content: "",
-        //   });
-        // }
+        } else {
+          // Optional: create one if it doesn't exist
+          // await client.models.Document.create({
+          //   title: "shared-doc",
+          //   content: "",
+          // });
+        }
       };
       fetchDocument();
     } catch (error) {
