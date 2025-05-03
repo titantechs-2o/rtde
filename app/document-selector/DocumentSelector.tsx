@@ -39,12 +39,12 @@ export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
     const {data} = await client.models.Document.list();
     let docs:Document[]=[];
     for (const d of data){
-      console.log(typeof(d.title));
       var str:string;
       str = d.title || "";
       var temp: Document = {title: str, id: d.id, createdAt: d.createdAt, updatedAt: d.updatedAt};
       docs.push(temp)
     }
+    console.log(docs);
     setDocuments(docs);
 
   };
