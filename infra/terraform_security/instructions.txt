@@ -1,0 +1,12 @@
+1. install aws cli and terraform
+
+2. run aws configure and set up keys to authenticate
+
+3. in the settings set the amplify id to your own where it says <amplify id>
+
+4. Run "terraform init"
+ "terraform plan"
+
+ "terraform apply"
+
+ 5. We need to add the WAF to our aws manually
