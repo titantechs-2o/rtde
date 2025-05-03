@@ -1,12 +1,20 @@
 "use client";
 
 import "@/lib/amplifyClient";
-import { useState, useEffect, useMemo, FC } from "react";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  FC,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-
+import { API } from "aws-amplify";
 
 const Editor: FC = () => { 
   let url_params:URLSearchParams;
@@ -28,14 +36,14 @@ const Editor: FC = () => {
   const [italic, setItalic] = useState<boolean>(false);
   const [underline, setUnderline] = useState<boolean>(false);
 
-  const handleEdit = async (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleEdit = async (event: ChangeEvent<HTMLTextAreaElement>) => {
     const updatedContent = event.target.value;
     setContent(updatedContent);
 
     // Save update to DynamoDB
     const { data } = await client.models.Document.list();
     console.log(data);
-    const doc = data.find((d) => d.id === docId);
+    const doc = data.find((d: any) => d.id === docId);
 
     if (doc) {
       console.log(doc.id, updatedContent);
@@ -75,17 +83,22 @@ const Editor: FC = () => {
 
   const toggleStyle = (
     style: boolean,
-    setter: React.Dispatch<React.SetStateAction<boolean>>,
+    setter: Dispatch<SetStateAction<boolean>>,
     eventName: string
   ): void => {
-    setter((prev) => {
+    setter((prev:Boolean) => {
       const newState: boolean = !prev;
       return newState;
     });
   };
 
+  const callLambda = async () => {
+    const response = await API.get("apiName", "/documents");
+    console.log(response);
+  };
+  
   useEffect(() => {
-    try {
+   
       const fetchDocument = async () => {
         const { data } = await client.models.Document.list();
         const doc = data.find((d) => d.id === docId);
@@ -100,9 +113,7 @@ const Editor: FC = () => {
         }
       };
       fetchDocument();
-    } catch (error) {
-      console.error("Could not load document", error);
-    }
+    
   }, []);
 
   return (
@@ -158,6 +169,7 @@ const Editor: FC = () => {
               <button className="signout-button" onClick={signOut}>
                 Sign Out
               </button>
+              <button onClick={callLambda}>Call Lambda</button>
             </div>
           </div>
         </div>
