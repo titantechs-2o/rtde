@@ -66,7 +66,7 @@ git clone https://github.com/KyleParato/rtde.git
 cd rtde
 Install dependencies
 
-```bash
+
 
 
 npm install
@@ -76,7 +76,6 @@ Bootstrap AWS backend
 
 If using the Amplify sandbox:
 
-```bash
 
 npx ampx sandbox --once \
   --outputs-format json \
@@ -84,7 +83,7 @@ npx ampx sandbox --once \
   --outputs-out-dir amplify
 Otherwise, configure your Amplify project and run:
 
-```bash
+
 
 amplify init
 amplify push --yes
@@ -96,7 +95,7 @@ In amplifyConfig.ts, import and pass it to Amplify.configure().
 
 Run the development server
 
-```bash
+
 npm run dev
 or
 yarn dev
