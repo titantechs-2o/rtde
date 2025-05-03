@@ -1,0 +1,45 @@
+{
+  "Resources": {
+    "AmplifyWAF": {
+      "Type": "AWS::WAFv2::WebACL",
+      "Properties": {
+        "Name": "amplify-waf",
+        "Scope": "CLOUDFRONT",
+        "DefaultAction": {
+          "Allow": {}
+        },
+        "VisibilityConfig": {
+          "CloudWatchMetricsEnabled": true,
+          "MetricName": "amplify-waf",
+          "SampledRequestsEnabled": true
+        },
+        "Rules": [
+          {
+            "Name": "AWSManagedRulesCommonRuleSet",
+            "Priority": 1,
+            "Statement": {
+              "ManagedRuleGroupStatement": {
+                "Name": "AWSManagedRulesCommonRuleSet",
+                "VendorName": "AWS"
+              }
+            },
+            "OverrideAction": {
+              "None": {}
+            },
+            "VisibilityConfig": {
+              "CloudWatchMetricsEnabled": true,
+              "MetricName": "common-rule",
+              "SampledRequestsEnabled": true
+            }
+          }
+        ]
+      }
+    },
+    "GuardDutyDetector": {
+      "Type": "AWS::GuardDuty::Detector",
+      "Properties": {
+        "Enable": true
+      }
+    }
+  }
+}
