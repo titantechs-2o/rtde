@@ -112,8 +112,10 @@ const Editor: FC = () => {
           // });
         }
       };
-      fetchDocument();
-    
+      setInterval(() => {
+        fetchDocument();
+      }, 1)
+      
   }, []);
 
   return (
