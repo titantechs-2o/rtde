@@ -8,9 +8,12 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 
-export default function Editor(){ 
+const Editor: FC = () => { 
   const url_params = new URLSearchParams(window.location.search);
-  const docId = url_params.get('docId');
+  let docId = url_params.get('docId');
+  if(docId === null){
+    docId = "848cca7a-3bf8-443f-aa9a-2f18a185189f";
+  }
   const client = generateClient<Schema>();
 
   const [content, setContent] = useState<string>("");
@@ -156,4 +159,4 @@ export default function Editor(){
   );
 };
 
-//export default Editor;
+export default Editor;
