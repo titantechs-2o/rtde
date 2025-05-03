@@ -72,7 +72,7 @@ bash
 Copy
 Edit
 npm install
-# or
+or
 yarn install
 Bootstrap AWS backend
 
@@ -104,7 +104,7 @@ bash
 Copy
 Edit
 npm run dev
-# or
+or
 yarn dev
 Open http://localhost:3000 to view the editor.
 
