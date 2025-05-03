@@ -9,11 +9,18 @@ import "@aws-amplify/ui-react/styles.css";
 
 
 const Editor: FC = () => { 
-  const url_params = new URLSearchParams(window.location.search);
-  let docId = url_params.get('docId');
+  let url_params:URLSearchParams;
+  let docId;
+  if(typeof window !== 'undefined'){
+    url_params = new URLSearchParams(window.location.search);
+    docId = url_params.get('docId');
+  } else{
+    docId = null;
+  }
   if(docId === null){
     docId = "848cca7a-3bf8-443f-aa9a-2f18a185189f";
   }
+  console.log(docId);
   const client = generateClient<Schema>();
 
   const [content, setContent] = useState<string>("");
