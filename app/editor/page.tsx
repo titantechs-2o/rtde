@@ -14,7 +14,7 @@ import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import { API } from "aws-amplify";
+//import {API} from "aws-amplify"
 
 const Editor: FC = () => { 
   let url_params:URLSearchParams;
@@ -92,10 +92,10 @@ const Editor: FC = () => {
     });
   };
 
-  const callLambda = async () => {
-    const response = await API.get("apiName", "/documents");
-    console.log(response);
-  };
+  // const callLambda = async () => {
+  //   const response = await API.get("apiName", "/documents");
+  //   console.log(response);
+  // };
   
   useEffect(() => {
    
@@ -169,7 +169,7 @@ const Editor: FC = () => {
               <button className="signout-button" onClick={signOut}>
                 Sign Out
               </button>
-              <button onClick={callLambda}>Call Lambda</button>
+              {/* <button onClick={callLambda}>Call Lambda</button> */}
             </div>
           </div>
         </div>
