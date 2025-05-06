@@ -1,0 +1,19 @@
+type Document {
+  id: ID!
+  content: String!
+  updatedAt: AWSDateTime!
+}
+
+type Query {
+  getDocument(id: ID!): Document
+}
+
+type Mutation {
+  updateDocument(id: ID!, content: String!): Document
+}
+
+type Subscription {
+  onUpdateDocument(id: ID!): Document
+    @aws_subscribe(mutations: ["updateDocument"])
+}
+
