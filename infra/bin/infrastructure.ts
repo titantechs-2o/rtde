@@ -5,8 +5,8 @@ import { RealtimeDocStack } from '../lib/appsync-stack';
 
 const app = new cdk.App();
 // Only two arguments—that matches your current constructor signature:
-const account = process.env.CDK_DEFAULT_ACCOUNT ?? '464672142928';
-const region  = process.env.CDK_DEFAULT_REGION  ?? 'us-west-1';
+const account = process.env.CDK_DEFAULT_ACCOUNT!;
+const region  = process.env.CDK_DEFAULT_REGION!;
 new RealtimeDocStack(app, 'RealtimeDocStack', {
     env: {
       account,
