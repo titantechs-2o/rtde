@@ -100,7 +100,7 @@
       "ApiId"
      ]
     },
-    "Expires": 1778055940
+    "Expires": 1778058049
    },
    "DependsOn": [
     "RealtimeDocAPISchema6D1E407F"
@@ -412,8 +412,8 @@
      "Statement": [
       {
        "Action": [
-        "logs:PutRetentionPolicy",
-        "logs:DeleteRetentionPolicy"
+        "logs:DeleteRetentionPolicy",
+        "logs:PutRetentionPolicy"
        ],
        "Effect": "Allow",
        "Resource": "*"
@@ -512,13 +512,13 @@
       {
        "Action": [
         "dynamodb:BatchGetItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
         "dynamodb:GetRecords",
         "dynamodb:GetShardIterator",
         "dynamodb:Query",
-        "dynamodb:GetItem",
-        "dynamodb:Scan",
-        "dynamodb:ConditionCheckItem",
-        "dynamodb:DescribeTable"
+        "dynamodb:Scan"
        ],
        "Effect": "Allow",
        "Resource": [
@@ -625,17 +625,17 @@
       {
        "Action": [
         "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
         "dynamodb:GetRecords",
         "dynamodb:GetShardIterator",
-        "dynamodb:Query",
-        "dynamodb:GetItem",
-        "dynamodb:Scan",
-        "dynamodb:ConditionCheckItem",
-        "dynamodb:BatchWriteItem",
         "dynamodb:PutItem",
-        "dynamodb:UpdateItem",
-        "dynamodb:DeleteItem",
-        "dynamodb:DescribeTable"
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
        ],
        "Effect": "Allow",
        "Resource": [
@@ -770,9 +770,6 @@
    "eu-central-2": {
     "value": "nodejs20.x"
    },
-   "eu-isoe-west-1": {
-    "value": "nodejs18.x"
-   },
    "eu-north-1": {
     "value": "nodejs20.x"
    },
@@ -811,21 +808,6 @@
    },
    "us-east-2": {
     "value": "nodejs20.x"
-   },
-   "us-gov-east-1": {
-    "value": "nodejs18.x"
-   },
-   "us-gov-west-1": {
-    "value": "nodejs18.x"
-   },
-   "us-iso-east-1": {
-    "value": "nodejs18.x"
-   },
-   "us-iso-west-1": {
-    "value": "nodejs18.x"
-   },
-   "us-isob-east-1": {
-    "value": "nodejs18.x"
    },
    "us-west-1": {
     "value": "nodejs20.x"

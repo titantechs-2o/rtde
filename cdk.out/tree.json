@@ -169,7 +169,7 @@
                         "ApiId"
                       ]
                     },
-                    "expires": 1778055940
+                    "expires": 1778058049
                   }
                 },
                 "constructInfo": {
@@ -666,8 +666,8 @@
                               "Statement": [
                                 {
                                   "Action": [
-                                    "logs:PutRetentionPolicy",
-                                    "logs:DeleteRetentionPolicy"
+                                    "logs:DeleteRetentionPolicy",
+                                    "logs:PutRetentionPolicy"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": "*"
@@ -792,13 +792,13 @@
                                 {
                                   "Action": [
                                     "dynamodb:BatchGetItem",
+                                    "dynamodb:ConditionCheckItem",
+                                    "dynamodb:DescribeTable",
+                                    "dynamodb:GetItem",
                                     "dynamodb:GetRecords",
                                     "dynamodb:GetShardIterator",
                                     "dynamodb:Query",
-                                    "dynamodb:GetItem",
-                                    "dynamodb:Scan",
-                                    "dynamodb:ConditionCheckItem",
-                                    "dynamodb:DescribeTable"
+                                    "dynamodb:Scan"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": [
@@ -977,17 +977,17 @@
                                 {
                                   "Action": [
                                     "dynamodb:BatchGetItem",
+                                    "dynamodb:BatchWriteItem",
+                                    "dynamodb:ConditionCheckItem",
+                                    "dynamodb:DeleteItem",
+                                    "dynamodb:DescribeTable",
+                                    "dynamodb:GetItem",
                                     "dynamodb:GetRecords",
                                     "dynamodb:GetShardIterator",
-                                    "dynamodb:Query",
-                                    "dynamodb:GetItem",
-                                    "dynamodb:Scan",
-                                    "dynamodb:ConditionCheckItem",
-                                    "dynamodb:BatchWriteItem",
                                     "dynamodb:PutItem",
-                                    "dynamodb:UpdateItem",
-                                    "dynamodb:DeleteItem",
-                                    "dynamodb:DescribeTable"
+                                    "dynamodb:Query",
+                                    "dynamodb:Scan",
+                                    "dynamodb:UpdateItem"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": [
