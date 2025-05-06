@@ -1,4 +1,5 @@
 # Real‑Time Document Editor (RTDE)
+# by: TitanTechs2.0(Anthony,Kyle,Jaytee,Michael,Christopher)
 
 A starter template for building a real‑time collaborative text editor with Next.js (App Router) and AWS Amplify.  
 Users can sign in (Cognito + social providers), read & update a shared document via AppSync GraphQL & DynamoDB, and receive live updates via GraphQL subscriptions.
