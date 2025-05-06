@@ -11,9 +11,11 @@ backend:
         - nvm install 20
         - nvm use 20
         - npm ci
-        # expose the ECS-injected role credentials to CDK:
-        - export AWS_CONTAINER_CREDENTIALS_FULL_URI="http://169.254.170.2${AWS_CONTAINER_CREDENTIALS_RELATIVE_URI}"
-        - export AWS_REGION=$CDK_DEFAULT_REGION
+
+        
+        - echo "===== ENV DUMP ====="
+        - printenv | grep AWS || true
+        - aws sts get-caller-identity
     build:
       commands:
         - npm ci --cache .npm --prefer-offline
