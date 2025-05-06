@@ -61,30 +61,35 @@ Users can sign in (Cognito + social providers), read & update a shared document 
 📥 Getting Started
 Clone this repo
 
-```bash
+bash
+Copy
+Edit
 git clone https://github.com/KyleParato/rtde.git
 cd rtde
 Install dependencies
 
-
-
-
+bash
+Copy
+Edit
 npm install
- or
+or
 yarn install
 Bootstrap AWS backend
 
 If using the Amplify sandbox:
 
-
+bash
+Copy
+Edit
 npx ampx sandbox --once \
   --outputs-format json \
   --outputs-version 1 \
   --outputs-out-dir amplify
 Otherwise, configure your Amplify project and run:
 
-
-
+bash
+Copy
+Edit
 amplify init
 amplify push --yes
 Configure your frontend
@@ -95,7 +100,9 @@ In amplifyConfig.ts, import and pass it to Amplify.configure().
 
 Run the development server
 
-
+bash
+Copy
+Edit
 npm run dev
 or
 yarn dev
