@@ -11,13 +11,15 @@ backend:
         - nvm install 20
         - nvm use 20
         - npm ci
-
         
-        - echo "===== ENV DUMP ====="
-        - printenv | grep AWS || true
-        - aws sts get-caller-identity
+        - unset AWS_PROFILE
+        
+        - export AWS_CONTAINER_CREDENTIALS_FULL_URI="http://169.254.170.2${AWS_CONTAINER_CREDENTIALS_RELATIVE_URI}"
+        - export AWS_REGION=$CDK_DEFAULT_REGION
     build:
       commands:
+        - echo "CRED URI → $AWS_CONTAINER_CREDENTIALS_FULL_URI"
+        - aws sts get-caller-identity
         - npm ci --cache .npm --prefer-offline
         - npx cdk bootstrap aws://$CDK_DEFAULT_ACCOUNT/$CDK_DEFAULT_REGION
         - npx cdk deploy --require-approval never
@@ -40,4 +42,4 @@ frontend:
     paths:
       - .next/cache/**/*
       - .npm/**/*
-      - node_modules/**/*
+      - node_modules/**/*xs

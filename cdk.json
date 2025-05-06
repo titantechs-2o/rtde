@@ -1,6 +1,5 @@
 {
   "app": "npx ts-node --transpile-only infra/bin/infrastructure.ts",
-  "profile": "cdk",
   "watch": {
     "include": [
       "**"
