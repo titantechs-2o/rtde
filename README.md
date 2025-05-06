@@ -24,14 +24,16 @@ Users can sign in (Cognito + social providers), read & update a shared document 
 ---
 
 ## 📁 Repo Structure
+
+```
 /
-├── amplify/ # Amplify‑generated backend config & stubs
-├── app/ # Next.js “app” directory (pages & client components)
-├── infra/terraform_security # IaC for AWS resources (Cognito, AppSync, DynamoDB)
-├── lib/ # Shared React/utility code
-├── public/ # Static assets
-├── amplify.yml # Amplify Console build settings
-├── next.config.js # Next.js configuration
+├── amplify/                       # Amplify‑generated backend config & stubs
+├── app/                           # Next.js “app” directory (pages & client components)
+├── infra/terraform_security       # IaC for AWS resources (Cognito, AppSync, DynamoDB)
+├── lib/                           # Shared React/utility code
+├── public/                        # Static assets
+├── amplify.yml                    # Amplify Console build settings
+├── next.config.js                 # Next.js configuration
 ├── package.json
 ├── tsconfig.json
 ├── .gitignore
@@ -40,6 +42,8 @@ Users can sign in (Cognito + social providers), read & update a shared document 
 ├── CODE_OF_CONDUCT.md
 ├── LICENSE (MIT‑0)
 └── SECURITY.md
+```
+
 
 
 ---
