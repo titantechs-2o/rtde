@@ -1,0 +1,228 @@
+{
+  "version": "38.0.1",
+  "artifacts": {
+    "RealtimeDocStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "RealtimeDocStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "RealtimeDocStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "RealtimeDocStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "notificationArns": [],
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/34137a40066ddc8c0bebe6a4e3d2b89965aad24a091ca34e1eff5d1a32937a61.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "RealtimeDocStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "RealtimeDocStack.assets"
+      ],
+      "metadata": {
+        "/RealtimeDocStack/DocumentsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DocumentsTable7E808EE5"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/ApiLogsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIApiLogsRole705EC833"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIB67C1404"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/Schema": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPISchema6D1E407F"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/DefaultApiKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIDefaultApiKey6EAA451F"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/LogRetention/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPILogRetentionD7AEB28D"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/GetDS/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIGetDSServiceRole1BFF7FB7"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/GetDS/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIGetDSServiceRoleDefaultPolicy802AC00D"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/GetDS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIGetDS96DD6147"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/GetQueryResolver/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIGetQueryResolverB85A289B"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/UpdateDS/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIUpdateDSServiceRoleD3F443DC"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/UpdateDS/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIUpdateDSServiceRoleDefaultPolicy05A20585"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/UpdateDS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIUpdateDSAD20EA0E"
+          }
+        ],
+        "/RealtimeDocStack/RealtimeDocAPI/UpdateMutationResolver/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RealtimeDocAPIUpdateMutationResolver8A08B698"
+          }
+        ],
+        "/RealtimeDocStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+          }
+        ],
+        "/RealtimeDocStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB"
+          }
+        ],
+        "/RealtimeDocStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A"
+          }
+        ],
+        "/RealtimeDocStack/LatestNodeRuntimeMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LatestNodeRuntimeMap"
+          }
+        ],
+        "/RealtimeDocStack/GetDocumentFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetDocumentFnServiceRole0A3F9F70"
+          }
+        ],
+        "/RealtimeDocStack/GetDocumentFn/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetDocumentFnServiceRoleDefaultPolicy53DD4036"
+          }
+        ],
+        "/RealtimeDocStack/GetDocumentFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetDocumentFn1790F1C2"
+          }
+        ],
+        "/RealtimeDocStack/UpdateDocumentFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateDocumentFnServiceRoleEE0E4303"
+          }
+        ],
+        "/RealtimeDocStack/UpdateDocumentFn/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateDocumentFnServiceRoleDefaultPolicyE4218A0E"
+          }
+        ],
+        "/RealtimeDocStack/UpdateDocumentFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateDocumentFnCC7E9870"
+          }
+        ],
+        "/RealtimeDocStack/GraphQLAPIURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GraphQLAPIURL"
+          }
+        ],
+        "/RealtimeDocStack/GraphQLAPIKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GraphQLAPIKey"
+          }
+        ],
+        "/RealtimeDocStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/RealtimeDocStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/RealtimeDocStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/RealtimeDocStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "RealtimeDocStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
