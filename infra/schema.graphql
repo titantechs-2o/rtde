@@ -17,7 +17,7 @@ type Query {
 }
 
 type Mutation {
-  updateDocument(id: ID!, content: String!): Document
   deleteDocument(id: ID!): Document
   downloadDocument(id: ID!): DocumentDownloadPayload
+  fetchDocuments: [Document]
 }

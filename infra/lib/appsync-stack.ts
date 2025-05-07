@@ -71,7 +71,7 @@ export class RealtimeDocStack extends cdk.Stack {
       ds.createResolver(`${id}Resolver`, { typeName, fieldName });
     };
 
-    // 3) List all documents
+    // 1) List all documents
     makeLambdaResolver(
       'FetchDocumentsFn',
       'fetchDocuments',
@@ -80,16 +80,7 @@ export class RealtimeDocStack extends cdk.Stack {
       { read: true }
     );
 
-    // 4) Update a document
-    makeLambdaResolver(
-      'UpdateDocumentFn',
-      'updateDocument',
-      'Mutation',
-      'updateDocument',
-      { read: true, write: true }
-    );
-
-    // 5) Delete a document
+    // 2) Delete a document
     makeLambdaResolver(
       'DeleteDocumentFn',
       'deleteDocument',
@@ -98,7 +89,7 @@ export class RealtimeDocStack extends cdk.Stack {
       { write: true }
     );
 
-    // 6) Download a document
+    // 3) Download a document
     makeLambdaResolver(
       'DownloadDocumentFn',
       'downloadDocument',
@@ -107,7 +98,7 @@ export class RealtimeDocStack extends cdk.Stack {
       { read: true }
     );
 
-    // 7) Outputs for your frontend
+    // 4) Outputs for your frontend
     new CfnOutput(this, 'GraphQLAPIURL', { value: api.graphqlUrl });
     new CfnOutput(this, 'GraphQLAPIKey', { value: api.apiKey! });
   }
