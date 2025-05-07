@@ -9,7 +9,7 @@ Users can sign in (Cognito + social providers), read & update a shared document 
 ## 🚀 Features
 
 - **Authentication**  
-  - Email/password and “Sign in with Google” & “Sign in with GitHub” (Cognito User Pool + OIDC providers)
+  - Email/password and Sign in with Google
   - Secure routes with Amplify’s `<Authenticator>` component
 - **API & Database**  
   - GraphQL CRUD API powered by AWS AppSync  
