@@ -1,16 +1,16 @@
 {
   "projectName": "rtde",
-  "version": "3.1",
-  "envName": "main",
+  "envName":    "main",
+  "version":    "3.1",
 
   "frontend": "javascript",
   "javascript": {
     "framework": "react",
     "config": {
-      "SourceDir": "app",
+      "SourceDir":       "app",
       "DistributionDir": ".next",
-      "BuildCommand": "npm run build",
-      "StartCommand": "npm run dev"
+      "BuildCommand":    "npm run build",
+      "StartCommand":    "npm run dev"
     }
   },
 
@@ -29,4 +29,5 @@
     }
   }
 }
+
 
