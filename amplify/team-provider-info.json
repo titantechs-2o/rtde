@@ -1,0 +1,23 @@
+{
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-rtde-main-1719e-authRole",
+      "UnauthRoleArn": "arn:aws:iam::464672142928:role/amplify-rtde-main-1719e-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::464672142928:role/amplify-rtde-main-1719e-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-rtde-main-1719e-deployment",
+      "UnauthRoleName": "amplify-rtde-main-1719e-unauthRole",
+      "StackName": "amplify-rtde-main-1719e",
+      "StackId": "arn:aws:cloudformation:us-east-1:464672142928:stack/amplify-rtde-main-1719e/0d10f250-2c22-11f0-94d2-0e54b4e96aa7",
+      "AmplifyAppId": "d1nuge22vobfmr"
+    },
+    "categories": {
+      "auth": {
+        "rtdeAuth": {}
+      },
+      "api": {
+        "rtdeApi": {}
+      }
+    }
+  }
+}
