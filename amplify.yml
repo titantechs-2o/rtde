@@ -9,7 +9,6 @@ backend:
     build:
       commands:
         - amplifyPush --simple
-        - amplify pull --yes --restore --appId d1nuge22vobfmr --envName main
 
 frontend:
   phases:
