@@ -57,6 +57,9 @@ amplify/mock-api-resources/
 amplify/backend/.temp/
 amplify/backend/amplify-meta.json
 
+# backup of your old amplify folder
+/amplify_old/
+
 # Generated Amplify config files
 amplifyconfiguration*.json
 aws-exports.js

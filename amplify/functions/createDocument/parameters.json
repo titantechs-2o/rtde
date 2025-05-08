@@ -1,6 +1,0 @@
-{
-    "environmentVariables": {
-      "DOCUMENT_TABLE": { "Ref": "dataDocumentTableName" }
-    }
-  }
-  
