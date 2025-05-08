@@ -123,3 +123,5 @@ resource "aws_wafv2_web_acl" "amplify_acl" {
 #     Environment = "Production"
 #   }
 # }
+
+# Removed unsupported data source for aws_amplify_app
