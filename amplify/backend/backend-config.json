@@ -52,5 +52,163 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
     }
+  },
+  "function": {
+    "createDocument": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "DocumentStorage"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "deleteDocument": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "DocumentStorage"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "downloadDocument": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "DocumentStorage"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "fetchDocuments": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "DocumentStorage"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_createDocument_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createDocument"
+        }
+      ]
+    },
+    "AMPLIFY_function_createDocument_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createDocument"
+        }
+      ]
+    },
+    "AMPLIFY_function_createDocument_tableName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createDocument"
+        }
+      ]
+    },
+    "AMPLIFY_function_deleteDocument_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "deleteDocument"
+        }
+      ]
+    },
+    "AMPLIFY_function_deleteDocument_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "deleteDocument"
+        }
+      ]
+    },
+    "AMPLIFY_function_downloadDocument_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "downloadDocument"
+        }
+      ]
+    },
+    "AMPLIFY_function_downloadDocument_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "downloadDocument"
+        }
+      ]
+    },
+    "AMPLIFY_function_fetchDocuments_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fetchDocuments"
+        }
+      ]
+    },
+    "AMPLIFY_function_fetchDocuments_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fetchDocuments"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "DocumentStorage": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
   }
 }

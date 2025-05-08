@@ -28,7 +28,14 @@ const awsmobile = {
     ],
     "aws_appsync_graphqlEndpoint": "https://asjrov7sj5emxosmjaiuodr64i.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_appsync_region": "us-east-1",
-    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS"
+    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
+    "aws_dynamodb_all_tables_region": "us-east-1",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "Document-main",
+            "region": "us-east-1"
+        }
+    ]
 };
 
 

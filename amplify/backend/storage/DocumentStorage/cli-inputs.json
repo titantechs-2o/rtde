@@ -1,0 +1,10 @@
+{
+  "resourceName": "DocumentStorage",
+  "tableName": "Document",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

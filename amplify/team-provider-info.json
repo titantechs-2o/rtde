@@ -17,6 +17,28 @@
       },
       "api": {
         "rtdeApi": {}
+      },
+      "function": {
+        "createDocument": {
+          "tableName": "Document",
+          "deploymentBucketName": "amplify-rtde-main-1719e-deployment",
+          "s3Key": "amplify-builds/createDocument-33417879682f704b4334-build.zip"
+        },
+        "fetchDocuments": {
+          "deploymentBucketName": "amplify-rtde-main-1719e-deployment",
+          "s3Key": "amplify-builds/fetchDocuments-74583361426f36684d4f-build.zip"
+        },
+        "downloadDocument": {
+          "deploymentBucketName": "amplify-rtde-main-1719e-deployment",
+          "s3Key": "amplify-builds/downloadDocument-6e52636c39556b422b58-build.zip"
+        },
+        "deleteDocument": {
+          "deploymentBucketName": "amplify-rtde-main-1719e-deployment",
+          "s3Key": "amplify-builds/deleteDocument-557253424d76656f5043-build.zip"
+        }
+      },
+      "storage": {
+        "DocumentStorage": {}
       }
     }
   }
