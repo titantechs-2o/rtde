@@ -1,0 +1,33 @@
+{
+  "projectName": "rtde",
+  "envName":    "main",
+  "version":    "3.1",
+
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir":       "app",
+      "DistributionDir": ".next",
+      "BuildCommand":    "npm run build",
+      "StartCommand":    "npm run dev"
+    }
+  },
+
+  "providers": {
+    "awscloudformation": {
+      "Region":               "us-east-1",
+      "DeploymentBucketName": "amplify-rtde-main-29818-deployment",
+      "UnauthRoleName":       "amplify-rtde-main-29818-unauthRole",
+      "AuthRoleName":         "amplify-rtde-main-29818-authRole",
+      "UnauthRoleArn":        "arn:aws:iam::464672142928:role/amplify-rtde-main-29818-unauthRole",
+      "AuthRoleArn":          "arn:aws:iam::464672142928:role/amplify-rtde-main-29818-authRole",
+      "StackId":              "arn:aws:cloudformation:us-east-1:464672142928:stack/amplify-rtde-main-29818/362e4460-2ba7-11f0-bf1e-0e1173392d2d",
+      "StackName":            "amplify-rtde-main-29818",
+      "AmplifyAppId":         "d3u9yv4had4bj9",
+      "EnvName":              "main"
+    }
+  }
+}
+
+
