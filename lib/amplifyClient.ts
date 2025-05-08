@@ -1,4 +1,7 @@
+// lib/amplifyClient.ts
 import { Amplify } from "aws-amplify";
-import config from "../amplify/amplify_outputs.json";
+import awsExports from "../app/aws-exports.js";
 
-Amplify.configure(config, { ssr: true });
+Amplify.configure(awsExports, { ssr: true });
+
+export { Amplify };

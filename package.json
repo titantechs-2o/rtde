@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run generate:aws-exports && next dev",
+    "generate:aws-exports": "node scripts/generate-aws-exports.js",
+    "build": "npm run generate:aws-exports && next build",
     "start": "next start",
     "lint": "next lint"
   },
