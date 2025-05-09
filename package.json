@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-amplify/ui-react": "^6.5.5",
+    "@aws-amplify/api": "^6.3.11",
+    "@aws-amplify/api-graphql": "^4.7.15",
+    "@aws-amplify/core": "^6.11.4",
+    "@aws-amplify/ui-react": "^6.11.1",
     "@aws-sdk/client-dynamodb": "^3.799.0",
     "@aws-sdk/lib-dynamodb": "^3.799.0",
-    "aws-amplify": "^6.6.6",
     "bootstrap": "^5.3.5",
     "next": "14.2.10",
     "react": "^18",

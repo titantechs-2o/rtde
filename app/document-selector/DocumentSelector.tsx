@@ -1,98 +1,99 @@
+// app/document-selector/DocumentSelector.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import DocumentTile from "./DocumentTile";
-import Editor from "../editor/page";
-import { generateClient } from "aws-amplify/data";
-import type {Schema} from "../../amplify/data/resource";
-import { ModelField, Nullable } from "@aws-amplify/data-schema";
+
+// 1) pull in the core
+import { Amplify } from "@aws-amplify/core";
+import awsExports from "../aws-exports";    // ← path to your generated aws-exports.js
+
+// 2) pull in the GraphQL client plugin
+import { GraphQLAPI } from "@aws-amplify/api-graphql";
+
+// 3) your generated artifacts
+import { listDocuments } from "../graphql/queries";
+import { createDocument as createDocMutation } from "../graphql/mutations";
+
+// 4) your UI Auth wrapper
+import { Authenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+
+// configure Amplify once:
+Amplify.configure(awsExports);
+// **no** Amplify.register(...) needed
 
 interface Document {
   id: string;
-  title: string;
+  title?: string;
+  content?: string;
   createdAt: string;
   updatedAt: string;
 }
 
-interface DocumentSelectorProps {
-  signOut?: () => void;
-}
-
-const client = generateClient<Schema>();
-
-export default function DocumentSelector({ signOut }: DocumentSelectorProps) {
+export default function DocumentSelector({ signOut }: { signOut?: () => void }) {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(false);
-  
-  const fetchDocuments = async () => {
-    // setLoading(true);
-    // try {
-    //   const response = await handler(event);
-    //   const data = await response.body;
-    //   //setDocuments(data);
-    //   console.log(data);
-    // } catch (error) {
-    //   console.error("Failed to fetch documents:", error);
-    // } finally {
-    //   setLoading(false);
-    // }
-    const {data} = await client.models.Document.list();
-    let docs:Document[]=[];
-    for (const d of data){
-      var str:string;
-      str = d.title || "";
-      var temp: Document = {title: str, id: d.id, createdAt: d.createdAt, updatedAt: d.updatedAt};
-      docs.push(temp)
-    }
-    console.log(docs);
-    setDocuments(docs);
 
-  };
-
-  const createDocument = async () => {
-    const str = window.prompt("Create New Document");
-    if(str != null){
-      client.models.Document.create({title: str,});
+  async function fetchDocuments() {
+    setLoading(true);
+    try {
+      const resp = (await GraphQLAPI.graphql(
+        // ← 1st arg is your Amplify instance
+        Amplify,
+        {
+          query: listDocuments,
+          // you can also pass “authMode”, etc. here
+        }
+      )) as { data: { listDocuments: { items: Document[] } } };
+      setDocuments(resp.data.listDocuments.items);
+    } catch (err) {
+      console.error("fetch failed:", err);
+    } finally {
+      setLoading(false);
     }
-  };
+  }
+
+  async function createDocument() {
+    const title = window.prompt("Title?");
+    if (!title) return;
+    await GraphQLAPI.graphql(
+      Amplify,
+      {
+        query: createDocMutation,
+        variables: { input: { title } },
+      }
+    );
+    // re-load
+    fetchDocuments();
+  }
 
   useEffect(() => {
     fetchDocuments();
   }, []);
 
   return (
-    <div className="container">
-      <div className="card">
-        <h1 className="editor-title">Select a Document</h1>
-
-        <div className="action-buttons">
-          <button onClick={fetchDocuments} className="refresh-button">
-            Refresh
-          </button>
-          <button onClick={createDocument} className="crete-new-button">
-            Create New Document
-          </button>
-          <button onClick={() => signOut?.()} className="signout-button">
-            Sign Out
-          </button>
-        </div>
-
-        <div className="text-control">
+    <Authenticator>
+      {({ signOut }) => (
+        <div className="container">
+          <h1>Select a Document</h1>
+          <button onClick={fetchDocuments}>Refresh</button>
+          <button onClick={createDocument}>New Document</button>
+          <button onClick={() => signOut?.()}>Sign Out</button>
           {loading ? (
-            <p>Loading...</p>
+            <p>Loading…</p>
           ) : (
-            documents.map((doc) => (
+            documents.map((d) => (
               <DocumentTile
-                key={doc.id}
-                id={doc.id}
-                title={doc.title}
-                createdAt={doc.createdAt}
+                key={d.id}
+                id={d.id}
+                title={d.title || "Untitled"}
+                createdAt={d.createdAt}
               />
             ))
           )}
-          
         </div>
-      </div>
-    </div>
+      )}
+    </Authenticator>
   );
 }
